@@ -1,0 +1,14 @@
+
+<%= form_tag("/home", method: :get) do %>
+ <h3>Input ID of a flickr user</h3>
+ <%= text_field_tag :user_id %>
+
+ <%= submit_tag "Display flickr photos" %>
+<%end %>
+
+<% unless params[:user_id].blank? %>
+  <h1> Search Result for <%= params[:user_id] %></h1>
+  <% @photos_from_id.each do |photo| %>
+    <%= image_tag "https://farm#{photo.farm}.staticflickr.com/#{photo.server}/#{photo.id}_#{photo.secret}.jpg" %>
+  <% end %>
+<% end %>
